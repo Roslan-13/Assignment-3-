@@ -1,1 +1,47 @@
+// Define the global entry point
+.global _start
+_start:
+
+	// Store two numbers in R0 and R1
+	MOV R0, #1 // Store the first number (Modify this value as needed)
+	MOV R1, #2 // Store the second number (Modify this value as needed)
+
+	// Store decimal 15 in register R5
+	MOV R5, #15
+
+	// Compare R0 and R1 to determine the relationship between them
+	CMP R0, R1 // R0 - R1
+
+	// Branch based on the result of the comparison
+
+	// If R0 is less than R1, perform one logical right shift on R5 (dividing by 2)
+	BLT lesser
+
+	// If R0 is greater than R1, perform two logical left shifts on R5 (multiplying by 4)
+	BGT greater
+
+	// If R0 and R1 are equal, perform one right rotation on R5
+	BAL end
+
+lesser:
+	// One logical right shift on R5 (dividing by 2)
+	LSR R5, R5, #1
+
+	// Terminate the program
+	BAL end
+
+greater:
+	// Two logical left shifts on R5 (multiplying by 4)
+	LSL R5, R5, #2
+
+	// Terminate the program
+	BAL end
+
+end:
+	// End of the program. You can perform additional actions here if needed.
+	// For example, you can store the final result in another register or memory location.
+	MOV R3, #11 // Example: Store the value 11 in register R3 before terminating (Modify this value as needed)
+
+	// Terminate the program
+	BX LR // Return from subroutine (terminate the program)
 
